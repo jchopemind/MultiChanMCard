@@ -1,0 +1,267 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MultiChanMCard"
+      xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MultiChanMCard.ParametersConfig"
+     xmlns:mytool ="clr-namespace:Xceed.Wpf.Samples.SampleData;assembly=Xceed.Wpf.Samples.SampleData"
+        mc:Ignorable="d" 
+      d:DesignHeight="280" d:DesignWidth="490"
+      Title="ParametersConfig">
+
+    <Grid Margin="10,0,0,10" HorizontalAlignment="Center" Width="480">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="select_ListView" Grid.Column="0" SelectedIndex="0" SelectionChanged="select_ListView_SelectionChanged">
+            <System:String>窗口长度</System:String>
+            <System:String>采 样 率</System:String>
+            <System:String>增    益</System:String>
+            <System:String>滤波方式</System:String>
+            <System:String>通道使能</System:String>
+            <System:String>采集时长</System:String>
+        </ListView>
+
+        <Grid Visibility="Hidden" x:Name="windowLength_grid" Grid.Column="1"
+              Margin="20, 5, 5, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="窗口长度:" Grid.Column="0" Height="25" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="winlen_cb" Height="25" HorizontalAlignment="Left" Grid.Column="1" SelectedIndex="0" SelectionChanged="winLength_CB_Changed">
+                <System:String>512</System:String>
+                <System:String>1024</System:String>
+                <System:String>2048</System:String>
+                <System:String>4096</System:String>
+                <System:String>8192</System:String>
+                <System:String>16384</System:String>
+            </ComboBox>
+        </Grid>
+        <Grid Visibility="Hidden" x:Name="measureRate_grid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid Margin="5,35,5,35" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="频段选择：" Grid.Column="0" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <RadioButton x:Name="sampleRate_low_rb" Grid.Column="1" Content="低频" Height="25" VerticalAlignment="Center" IsChecked="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="freqSelect_rd_checked"/>
+                    <RadioButton x:Name="sampleRate_mid_rb" Grid.Column="2" Content="中频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="freqSelect_rd_checked"></RadioButton>
+                    <RadioButton x:Name="sampleRate_high_rb" Grid.Column="3" Content="高频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="freqSelect_rd_checked"></RadioButton>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="频率选择：" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <ComboBox x:Name="lowFreq_cb" Visibility="Visible" Grid.Column="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="sampleRate_low_CB_Changed">
+                    <System:String>4800 Hz</System:String>
+                    <System:String>2400 Hz</System:String>
+                    <System:String>1200 Hz</System:String>
+                    <System:String>400 Hz</System:String>
+                    <System:String>100 Hz</System:String>
+                    <System:String>60 Hz</System:String>
+                    <System:String>50 Hz</System:String>
+                    <System:String>20 Hz</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="midFreq_cb" Visibility="Hidden" Grid.Column="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="sampleRate_mid_CB_Changed">
+                    <System:String>19200 Hz</System:String>
+                    <System:String>14400 Hz</System:String>
+                    <System:String>1200 Hz</System:String>
+                    <System:String>7200 Hz</System:String>
+                    <System:String>4800 Hz</System:String>
+                    <System:String>2400 Hz</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="highFreq_cb" Visibility="Hidden" Grid.Column="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="sampleRate_high_CB_Changed">
+                    <System:String>256 KHz</System:String>
+                    <System:String>128 KHz</System:String>
+                    <System:String>64 KHz</System:String>
+                    <System:String>32 KHz</System:String>
+                    <System:String>16 KHz</System:String>
+                    <System:String>8 KHz</System:String>
+                </ComboBox>
+
+            </Grid>
+        </Grid>
+        <Grid Visibility="Hidden" x:Name="zengYi_grid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid Margin="5,35,5,35" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="频段选择：" Grid.Column="0" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <RadioButton Grid.Column="1" Content="低频" Height="25" VerticalAlignment="Center" IsChecked="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="zengYiSelect_rd_checked"/>
+                    <RadioButton Grid.Column="2" Content="中频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="zengYiSelect_rd_checked"></RadioButton>
+                    <RadioButton Grid.Column="3" Content="高频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="zengYiSelect_rd_checked"></RadioButton>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="增益选择：" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <ComboBox x:Name="lowZengyi_cb" Visibility="Visible" Grid.Column="1" Height="25"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="gain_low_CB_Changed">
+                    <System:String>1</System:String>
+                    <System:String>2</System:String>
+                    <System:String>4</System:String>
+                    <System:String>8</System:String>
+                    <System:String>16</System:String>
+                    <System:String>32</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="midZengyi_cb" Visibility="Hidden" Grid.Column="1" Height="25"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="gain_mid_CB_Changed">
+                    <System:String>1</System:String>
+                    <System:String>2</System:String>
+                    <System:String>4</System:String>
+                    <System:String>8</System:String>
+                    <System:String>16</System:String>
+                    <System:String>32</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="highZengyi_cb" Visibility="Hidden" Grid.Column="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="gain_high_CB_Changed">
+                    <System:String>无增益</System:String>
+
+                </ComboBox>
+
+            </Grid>
+        </Grid>
+        <Grid Visibility="Hidden" x:Name="filter_grid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid Margin="5,35,5,35" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="频段选择：" Grid.Column="0" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <RadioButton Grid.Column="1" Content="低频" Height="25" VerticalAlignment="Center" IsChecked="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="filterSelect_rd_checked"/>
+                    <RadioButton Grid.Column="2" Content="中频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="filterSelect_rd_checked"></RadioButton>
+                    <RadioButton Grid.Column="3" Content="高频" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Checked="filterSelect_rd_checked"></RadioButton>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="滤波选择：" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                <ComboBox x:Name="lowFilter_cb" Visibility="Visible" Grid.Column="1" Height="25"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="filter_low_CB_Changed">
+                    <System:String>FIR</System:String>
+                    <System:String>Sinc1</System:String>
+                    <System:String>Sinc2</System:String>
+                    <System:String>Sinc3</System:String>
+                    <System:String>Sinc4</System:String>
+                    <System:String>Sinc5</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="midFilter_cb" Visibility="Hidden" Grid.Column="1" Height="25"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="filter_mid_CB_Changed">
+                    <System:String>FIR</System:String>
+                    <System:String>Sinc1</System:String>
+                    <System:String>Sinc2</System:String>
+                    <System:String>Sinc3</System:String>
+                    <System:String>Sinc4</System:String>
+                    <System:String>Sinc5</System:String>
+                </ComboBox>
+
+                <ComboBox x:Name="highFilter_cb" Visibility="Hidden" Grid.Column="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" SelectedIndex="0" SelectionChanged="filter_high_CB_Changed">
+                    <System:String>内部滤波宽带</System:String>
+                    <System:String>Sinc5</System:String>
+
+                </ComboBox>
+
+            </Grid>
+
+
+        </Grid>
+        <Grid Visibility="Hidden" x:Name="channels_grid" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="0, 25,0,0" Content="选择使能通道：" VerticalAlignment="Top"  HorizontalAlignment="Right"/>
+            <Grid Grid.Column="1" Margin="0,20,5,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="ch1_cb" Content="通道1" Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch2_cb" Content="通道2" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch3_cb" Content="通道3" Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch4_cb" Content="通道4" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch5_cb" Content="通道5" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch6_cb" Content="通道6" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch7_cb" Content="通道7" Grid.Row="3" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch8_cb" Content="通道8" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch9_cb" Content="通道9" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch10_cb" Content="通道10" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch11_cb" Content="通道11" Grid.Row="5" Grid.Column="0" VerticalContentAlignment="Center" />
+                <CheckBox x:Name="ch12_cb" Content="通道12" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" />
+            </Grid>
+        </Grid>
+        <Grid Visibility="Visible" x:Name="timeset_grid" Grid.Column="1" Margin="0, 20, 5, 20">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="时长：" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0"/>
+            <StackPanel Orientation="Horizontal" Grid.Row ="0" Grid.Column="1">
+                <TextBox x:Name="sampleTimeLength_tb" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Width="80" Text="59" VerticalContentAlignment="Center"/>
+                <TextBlock Text="秒" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Label Content="开始时间：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal" Grid.Row ="1" Grid.Column="1">
+                <TextBox x:Name="hour_tbox" Width="30" Text="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBlock Text=":" VerticalAlignment="Center"/>
+                <TextBox x:Name="mins_tbox" Width="30" Text="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBlock Text=":" VerticalAlignment="Center"/>
+                <TextBox x:Name="secs_tbox" Width="30" Text="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBlock Text="(时:分:秒)" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Button Margin="0,0,30,0" Grid.Row="2" Grid.Column="1" Height="30" Width="80" Content="完成" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Click="paramConfigCompleteButton_click"/>
+        </Grid>
+
+    </Grid>
+</Page>
