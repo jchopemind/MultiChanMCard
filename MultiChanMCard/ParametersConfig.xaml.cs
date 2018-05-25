@@ -361,6 +361,9 @@ namespace MultiChanMCard
             #region Time Configuration
             ProtocolCommands.setSampleTime(timelen, hour, mins, secs);
             #endregion
+
+
+            
         }
     }
 }

@@ -25,7 +25,7 @@
             <System:String>采集时长</System:String>
         </ListView>
 
-        <Grid Visibility="Hidden" x:Name="windowLength_grid" Grid.Column="1"
+        <Grid Visibility="Visible" x:Name="windowLength_grid" Grid.Column="1"
               Margin="20, 5, 5, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -234,7 +234,7 @@
                 <CheckBox x:Name="ch12_cb" Content="通道12" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" />
             </Grid>
         </Grid>
-        <Grid Visibility="Visible" x:Name="timeset_grid" Grid.Column="1" Margin="0, 20, 5, 20">
+        <Grid Visibility="Hidden" x:Name="timeset_grid" Grid.Column="1" Margin="0, 20, 5, 20">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>

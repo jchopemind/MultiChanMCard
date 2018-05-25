@@ -30,6 +30,12 @@ namespace MultiChanMCard
         public static byte[] CMD_SAMPLETIME =      { 0xee, 0x07, 0x00, 0x07,
                                                       0x00, 0x00, 0x00, 0x00,
                                                       0x00, 0x00, 0x00, 0xfc};
+
+        public static byte[] CMD_HEART =           { 0xee, 0x08, 0x00, 0x00, 0xfc};
+        public static byte[] CMD_SHAKEHANDS =      { 0xee, 0x09, 0x00, 0x01, 0x01, 0xfc};
+        public static byte[] CMD_ACK =             { 0xee, 0x00, 0x00, 0xfc};
+        public static byte[] CMD_START_FRAME = { 0xee, 0xee, 0x0a, 0x00, 0xfc, 0xfc};
+        public static byte[] CMD_END_FRAME = { 0xee, 0xee, 0x0a, 0x00, 0xfc, 0xfc};
         #endregion
 
         public static void setWindowLength(byte value)
